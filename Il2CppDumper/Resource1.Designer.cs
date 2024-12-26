@@ -183,5 +183,11 @@ namespace Il2CppDumper {
                 return ResourceManager.GetString("Global.Searching", resourceCulture);
             }
         }
+        
+        internal static string Error_ProtocolExporter_TargetAssemblyNotFound {
+            get {
+                return ResourceManager.GetString("Error.ProtocolExporter.TargetAssemblyNotFound", resourceCulture);
+            }
+        }
     }
 }
