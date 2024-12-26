@@ -121,4 +121,70 @@
   <data name="Il2CppDummyDll" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Libraries\Il2CppDummyDll.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="ProtocolExport.Start" xml:space="preserve">
+    <value>Export protocols...</value>
+  </data>
+  <data name="Global.Success" xml:space="preserve">
+    <value>Done!</value>
+  </data>
+  <data name="DummyAssemblyExporter.Start" xml:space="preserve">
+    <value>Generate dummy dll...</value>
+  </data>
+  <data name="Error.MetadataNotFound" xml:space="preserve">
+    <value>ERROR: Metadata file not found or encrypted.</value>
+  </data>
+  <data name="Global.Exit.RequireKey" xml:space="preserve">
+    <value>Press any key to exit...</value>
+  </data>
+  <data name="Global.Usage" xml:space="preserve">
+    <value>usage: {0} &lt;executable-file&gt; &lt;global-metadata&gt; &lt;output-directory&gt;</value>
+  </data>
+  <data name="Global.Init.Metadata" xml:space="preserve">
+    <value>Initializing metadata...</value>
+  </data>
+  <data name="Global.MetadataVersion" xml:space="preserve">
+    <value>Metadata Version: {0}</value>
+  </data>
+  <data name="Global.Init.Il2cpp" xml:space="preserve">
+    <value>Initializing il2cpp file...</value>
+  </data>
+  <data name="Error.Il2cppNotSupport" xml:space="preserve">
+    <value>ERROR: il2cpp file not supported.</value>
+  </data>
+  <data name="Global.Macho.SelectPlatform" xml:space="preserve">
+    <value>Select Platform: </value>
+  </data>
+  <data name="Global.Il2cppVersion" xml:space="preserve">
+    <value>Il2Cpp Version: {0}</value>
+  </data>
+  <data name="Global.Il2cpp.MayBeDumpWarning" xml:space="preserve">
+    <value>Detected this may be a dump file.</value>
+  </data>
+  <data name="Global.Il2cpp.RequireDumpAddress" xml:space="preserve">
+    <value>Input il2cpp dump address or input 0 to force continue:</value>
+  </data>
+  <data name="Error.UseManualMode" xml:space="preserve">
+    <value>ERROR: Can't use auto mode to process file, try manual mode.</value>
+  </data>
+  <data name="Global.RequireCodeReg" xml:space="preserve">
+    <value>Input CodeRegistration: </value>
+  </data>
+  <data name="Global.RequireMetadataReg" xml:space="preserve">
+    <value>Input MetadataRegistration: </value>
+  </data>
+  <data name="Error.DefaultError" xml:space="preserve">
+    <value>ERROR: An error occurred while processing.</value>
+  </data>
+  <data name="StructGenerator.Start" xml:space="preserve">
+    <value>Generate struct...</value>
+  </data>
+  <data name="Global.Dumping" xml:space="preserve">
+    <value>Dumping...</value>
+  </data>
+  <data name="PE.CustomPELoader" xml:space="preserve">
+    <value>Use custom PE loader</value>
+  </data>
+  <data name="Global.Searching" xml:space="preserve">
+    <value>Searching...</value>
+  </data>
 </root>
