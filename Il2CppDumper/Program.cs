@@ -264,19 +264,21 @@ namespace Il2CppDumper
                 var scriptGenerator = new StructGenerator(executor);
                 scriptGenerator.WriteScript(outputDir);
                 Console.WriteLine(Resource1.Global_Success);
+                GC.Collect(2,GCCollectionMode.Forced); // 手动gc一下2代堆，能降大概1个g左右的内存吧
             }
             if (config.GenerateDummyDll)
             {
                 Console.WriteLine(Resource1.DummyAssemblyExporter_Start);
                 DummyAssemblyExporter.Export(executor, outputDir, config.DummyDllAddToken);
                 Console.WriteLine(Resource1.Global_Success);
+                GC.Collect(2,GCCollectionMode.Forced);
             }
-
             if (config.ExportProtocol)
             {
                 Console.WriteLine(Resource1.ProtocolExport_Start);
                 ProtocolExporter.Export(executor, outputDir);
                 Console.WriteLine(Resource1.Global_Success);
+                GC.Collect(2,GCCollectionMode.Forced);
             }
         }
     }
