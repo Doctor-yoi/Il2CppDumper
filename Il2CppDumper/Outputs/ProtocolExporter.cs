@@ -109,7 +109,6 @@ namespace Il2CppDumper
             if (p_genericArguments == null) return "<!Error>";
             var genericArguments = (Collection<TypeReference>)p_genericArguments.GetValue(type);
             var output = type.Name[..^2] + "<";
-            if (genericArguments == null) return output + "!Error>";
             var i = 1;
             foreach (var typeReference in genericArguments)
             {
