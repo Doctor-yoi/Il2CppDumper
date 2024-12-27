@@ -6,6 +6,9 @@ using System.Text;
 using Mono.Cecil;
 using Mono.Collections.Generic;
 
+using Il2CppDumper.Packet;
+using Type = Il2CppDumper.Packet.Type;
+
 namespace Il2CppDumper
 {
     public static class ProtocolExporter
@@ -29,6 +32,32 @@ namespace Il2CppDumper
             var networkProtocolClassTypes = targetAssembly.MainModule.Types.ToList().FindAll(type => type.Namespace == "MX.NetworkProtocol" && type.BaseType!= null &&
                                                                                                      type.BaseType.FullName is "MX.NetworkProtocol.RequestPacket" or "MX.NetworkProtocol.ResponsePacket");
             var networkProtocolEnumTypes = targetAssembly.MainModule.Types.ToList().FindAll(type => type.Namespace == "MX.NetworkProtocol" && type.IsEnum);
+            // enum -> dict
+            var enums = targetAssembly.MainModule.Types.ToList()
+                .FindAll(type => type.Namespace == "MX.NetworkProtocol" && type.IsEnum).ToDictionary(type => type.Name,
+                    type => type.Fields.Where(field => field.Name != "value__")
+                        .ToDictionary(field => field.Name.Replace("_",""), field => (int)field.Constant));
+            
+            // packet -> dict
+            var packets = targetAssembly.MainModule.Types.ToList().FindAll(type =>
+                type.Namespace == "MX.NetworkProtocol" && type.BaseType is
+                {
+                    FullName: "MX.NetworkProtocol.RequestPacket" or "MX.NetworkProtocol.ResponsePacket"
+                }).ToDictionary(type => type.Name,
+                type => new Packet.Packet(type.Name.Replace("Request", "").Replace("Response", ""),
+                    enums["Protocol"][type.Name.Replace("Request", "").Replace("Response", "")],
+                    type.Properties.Select(property =>
+                        {
+                            parseTypeName(property.PropertyType); // 加一下未导出类
+                            return new Property(property.Name, property.PropertyType.Resolve());
+                        })
+                        .ToList(), type.BaseType.Name == "RequestPacket" ? PacketType.Request : PacketType.Response));
+            // unexported types
+            var types = new Dictionary<string, Type>();
+            while (UnexportedTypes.Count != 0)
+            {
+                
+            }
             // export packets
             // find unexported types
             var fs = File.Open("packets.txt", FileMode.OpenOrCreate);
@@ -38,7 +67,7 @@ namespace Il2CppDumper
                 fs.Write(Encoding.UTF8.GetBytes("Members:\n"));
                 foreach (var property in type.Properties)
                 {
-                    fs.Write(Encoding.UTF8.GetBytes($"  Name: {property.Name} >> Type: {parseTypeName(property.PropertyType)}\n"));
+                    fs.Write(Encoding.UTF8.GetBytes($"  Name: {property.Name} >> Value: {property.Constant} >> Type: {parseTypeName(property.PropertyType)}\n"));
                     addUnexportedTypes(property.PropertyType);
                 }
             }
@@ -74,7 +103,7 @@ namespace Il2CppDumper
                     }
                     foreach (var property in from property in type.Properties let skip = property.CustomAttributes.Any(attr => attr.AttributeType.Name == "CompilerGenerated") where !skip select property)
                     {
-                        fs.Write(Encoding.UTF8.GetBytes($"  Name: {property.Name} >> Type: {parseTypeName(property.PropertyType)}\n"));
+                        fs.Write(Encoding.UTF8.GetBytes($"  Name: {property.Name} >> Value: {property.Constant} >> Type: {parseTypeName(property.PropertyType)}\n"));
                         addUnexportedTypes(property.PropertyType);
                     }
 
