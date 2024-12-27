@@ -1,10 +1,8 @@
-# Il2CppDumper
-
-[![Build status](https://ci.appveyor.com/api/projects/status/anhqw33vcpmp8ofa?svg=true)](https://ci.appveyor.com/project/Perfare/il2cppdumper/branch/master/artifacts)
+# ProtocolDumper
 
 中文说明请戳[这里](README.zh-CN.md)
 
-Unity il2cpp reverse engineer
+A dumper for a special game🤫
 
 ## Features
 
@@ -15,6 +13,7 @@ Unity il2cpp reverse engineer
 * Supports generate structures header file
 * Supports Android memory dumped `libil2cpp.so` file to bypass protection
 * Support bypassing simple PE protection
+* ~~Support export protocol of some special game to golang file🤫~~
 
 ## Usage
 
