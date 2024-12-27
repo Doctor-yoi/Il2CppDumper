@@ -1,8 +1,6 @@
-# Il2CppDumper
+# ProtocolDumper
 
-[![Build status](https://ci.appveyor.com/api/projects/status/anhqw33vcpmp8ofa?svg=true)](https://ci.appveyor.com/project/Perfare/il2cppdumper/branch/master/artifacts)
-
-Unity il2cpp逆向工程
+某游戏的一个逆向导出软件 ~~\(美味的小孩😋\)~~
 
 ## 功能
 
@@ -13,6 +11,7 @@ Unity il2cpp逆向工程
 * 生成结构体头文件
 * 支持从内存dump的`libil2cpp.so`文件以绕过保护
 * 支持绕过简单的PE保护
+* 支持自动将协议包转换为golang源码文件
 
 ## 使用说明
 
